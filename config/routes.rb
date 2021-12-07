@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   patch "/jobs/:id", to: "jobs#update"
   delete "/jobs/:id", to: "jobs#destroy"
 
+  get "/sessions", to: "sessions#index"
+  post "/login", to: "sessions#create"
+  get "/me", to: "users#showme"
+  delete "/logout", to: "sessions#destroy"
 
 
   # Routing logic: fallback requests for React Router.

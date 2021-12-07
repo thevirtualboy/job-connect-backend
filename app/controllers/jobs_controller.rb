@@ -12,11 +12,13 @@ class JobsController < ApplicationController
     end 
 
     def create
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         job = Job.create(params_job)
         render json: job
     end
 
     def update
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         job = Job.find(params[:id])
         job.update(params_job)
         render json: job
@@ -24,6 +26,7 @@ class JobsController < ApplicationController
 
     #Delete
     def destroy
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         job = Job.find(params[:id])
         job.destroy!
         head :no_content   

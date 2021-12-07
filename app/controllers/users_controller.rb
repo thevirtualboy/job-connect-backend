@@ -10,9 +10,18 @@ class UsersController < ApplicationController
         render json: user, serializer: PosterSerializer
     end 
 
+    def showme
+        user = User.find(session[:user_id])
+        render json: user, serializer: PosterSerializer
+    end 
+
     def create
         user = User.create(params_user)
-        render json: user
+        if user.valid?
+          render json: user, status: :created
+        else
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def update
@@ -31,7 +40,7 @@ class UsersController < ApplicationController
     private
 
     def params_user
-        params.permit(:name, :email, :phone, :location, :password)
+        params.permit(:name, :email, :phone, :location, :password, :password_confirmation)
     end
 
 end
