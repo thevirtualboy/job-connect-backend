@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2021_12_06_213644) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.integer "phone"
+    t.string "phone"
     t.string "location"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
