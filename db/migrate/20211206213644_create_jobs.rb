@@ -5,8 +5,8 @@ class CreateJobs < ActiveRecord::Migration[6.1]
       t.string :description
       t.integer :payout
       t.string :location
-      t.references :poster_id, foreign_key: {to_table: 'users'}
-      t.references :taker_id, foreign_key: {to_table: 'users'}
+      t.integer :poster_id
+      t.integer :taker_id
       t.timestamps
     end
   end
