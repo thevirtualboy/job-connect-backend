@@ -1,6 +1,13 @@
-
+import {useState} from 'react'
 
 function Login_SignupPage () {
+
+    const [username, setUsername] = useState("")
+
+    function handleSubmit(){
+        
+        
+    }
     return (
     
     <>
@@ -14,6 +21,7 @@ function Login_SignupPage () {
     </label> 
     <button>Submit</button>
     </form>
+
     </>
 
 

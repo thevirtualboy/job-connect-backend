@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   
-  # resources :jobs 
-  # resources :users
+  resources :jobs 
+  resources :users
 
 
-  get "/users", to: "users#index"
-  get "/users/:id", to: "users#show"
-  post "/users", to: "users#create"
-  patch "/users/:id", to: "users#update"
-  delete "/users/:id", to: "users#destroy"
+  # get "/users", to: "users#index"
+  # get "/users/:id", to: "users#show"
+  # post "/users", to: "users#create"
+  # patch "/users/:id", to: "users#update"
+  # delete "/users/:id", to: "users#destroy"
 
-  get "/jobs", to: "jobs#index"
-  get "/jobs/:id", to: "jobs#show"
-  post "/jobs", to: "jobs#create"
-  patch "/jobs/:id", to: "jobs#update"
-  delete "/jobs/:id", to: "jobs#destroy"
+  # get "/jobs", to: "jobs#index"
+  # get "/jobs/:id", to: "jobs#show"
+  # post "/jobs", to: "jobs#create"
+  # patch "/jobs/:id", to: "jobs#update"
+  # delete "/jobs/:id", to: "jobs#destroy"
 
   get "/sessions", to: "sessions#index"
   post "/login", to: "sessions#create"
