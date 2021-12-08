@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Login_SignupPage ({onLogin}) {
+function Login_SignupPage ({onLogin, onLogout, uselog, login}) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -22,6 +22,12 @@ function Login_SignupPage ({onLogin}) {
         
         
     }
+
+    function handleLogout() {
+        fetch("/logout", {
+          method: "DELETE",
+        }).then(() => onLogout());
+      }
     return (
     
     <>
@@ -35,6 +41,8 @@ function Login_SignupPage ({onLogin}) {
     </label> 
     <button type="submit">Submit</button>
     </form>
+    <button onClick={handleLogout}>Logout </button>
+      {login? <p>{uselog}</p>:<p>not Logged in</p>}
 
     </>
 
