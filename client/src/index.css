@@ -14,6 +14,6 @@ code {
     monospace;
 }
 
-.nav:hover{
-  text-decoration-color: #0A8FF1
+.nav_link:hover {
+  color: "#0A8FF1"
 }
