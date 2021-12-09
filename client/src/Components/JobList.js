@@ -41,7 +41,7 @@ function JobList ({jobs, user, setUpdate, login}) {
                 <p>Description: <br />{job.description}</p>
                 <p>Pay: {job.payout}</p>
                 {login ? 
-                <button onClick={() => handleAccept(job, user)} style={btnStyle}>Accept</button>
+                <button className='btn' onClick={() => handleAccept(job, user)} style={btnStyle}>Accept</button>
                 :
                 null
                 }
@@ -65,6 +65,11 @@ function JobList ({jobs, user, setUpdate, login}) {
     return (
         <div style={bodyStyle}>
             <img style={{paddingTop: "30px", maxWidth: "1000px", width: "90%"}} src={image} />
+            {login ?
+                null
+            :
+                <p style={{textAlign: "center", fontFamily: "Genos, sans-serif", fontSize: "50px"}}>Please log in to accept jobs!</p>
+            }
             {jobList}
         </div>
     )

@@ -61,8 +61,8 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                     <p>Location: {job.location}</p>
                     <p>{job.description}</p>
                     <p>Pay: {job.payout}</p>
-                    <button onClick={() => {handleEditButton(job)}} style={btnStyle}>Edit</button>
-                    <button onClick={() => handleDelete(job)} style={btnStyle}>Delete</button>
+                    <button className='btn' onClick={() => {handleEditButton(job)}} style={btnStyle}>Edit</button>
+                    <button className='btn' onClick={() => handleDelete(job)} style={btnStyle}>Delete</button>
             </div>
         )
     })
@@ -74,7 +74,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                 <p>Location: {job.location}</p>
                 <p>{job.description}</p>
                 <p>Pay: {job.payout}</p>
-                <button onClick={() => handleCancel(job)} style={btnStyle} >Cancel</button>
+                <button className='btn' onClick={() => handleCancel(job)} style={btnStyle} >Cancel</button>
             </div>
         )
     })
@@ -178,7 +178,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                         <label>Pay: <br/>
                             <input type="number" placeholder="$$$" name="payout" onChange={handleJobForm}/> 
                         </label>
-                        <button style={btnStyle}>Submit</button>
+                        <button className='btn' style={btnStyle}>Submit</button>
                     </form>
                     <h1>Posted Jobs</h1>
                     {editing ?
@@ -196,7 +196,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                             <label>Pay <br/>
                                 <input type="number" value={editingJob.payout} placeholder="$$$" name="payout" onChange={handleEditForm}/> 
                             </label>
-                            <button style={btnStyle} >Submit</button>
+                            <button className='btn' style={btnStyle} >Submit</button>
                         </form>
                     </>
                         :

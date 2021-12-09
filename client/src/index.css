@@ -15,6 +15,6 @@ code {
     monospace;
 }
 
-.nav_link:hover {
-  color: "#0A8FF1"
+.btn:hover {
+  cursor: pointer;
 }

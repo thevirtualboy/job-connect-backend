@@ -22,7 +22,7 @@ const btnStyle ={
     border: "1.5px solid black",
     borderRadius: "10px",
     fontSize:"30px",
-    padding: "4px",
+    padding: "2px 8px 2px 8px",
     fontFamily: "Genos, sans-serif",
     fontStyle: "italic"
 }
@@ -37,10 +37,12 @@ function Header ({onLogout, login}) {
         <div style={headStyle}>
          <img style={logoStyle} src={logo} />
         {login ?
-            <button style={btnStyle} onClick={handleLogout}>Logout </button>
+            <Link to="/login">
+                <button className='btn' style={btnStyle} onClick={handleLogout}>Logout </button>
+            </Link>
             :
             <Link to="/login">
-                <button style={btnStyle}> Login/Signup </button>
+                <button className='btn' style={btnStyle}> Login/Signup </button>
             </Link>
         }
         </div>
