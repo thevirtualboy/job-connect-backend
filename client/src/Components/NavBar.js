@@ -1,6 +1,25 @@
+import { NavLink } from "react-router-dom"
 
 
 function NavBar () {
-    return null
+    return (
+        <>
+            <NavLink 
+                to="/"    
+            >
+                About Us
+            </NavLink>
+            <NavLink
+                to="/jobs"
+            >
+                Job List
+            </NavLink>
+            <NavLink
+                to="/myjobs"
+            >
+                My Jobs
+            </NavLink>
+        </>
+    )
 }
 export default NavBar

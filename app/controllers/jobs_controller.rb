@@ -13,14 +13,14 @@ class JobsController < ApplicationController
 
     def create
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-        job = Job.create(params_job)
+        job = Job.create(params_jobs)
         render json: job
     end
 
     def update
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
         job = Job.find(params[:id])
-        job.update(params_job)
+        job.update(params_jobs)
         render json: job
     end
 
