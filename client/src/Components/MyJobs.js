@@ -46,7 +46,8 @@ function MyJobs ({login, jobs, user, setUpdate}) {
         description: "",
         payout: "",
         location: "",
-        poster_id: ""
+        poster_id: "",
+        taker_id: "",
     })
     const [editing, setEditing] = useState(false)
     const [editingJob, setEditingJob] = useState({})
@@ -58,10 +59,10 @@ function MyJobs ({login, jobs, user, setUpdate}) {
         return (
             <div style={jobStyle}>
                     <h3>{job.title}</h3>
-                    <p>Location: {job.location}</p>
-                    <p>{job.description}</p>
-                    <p>Pay: {job.payout}</p>
-                    <button className='btn' onClick={() => {handleEditButton(job)}} style={btnStyle}>Edit</button>
+                    <p>Location: <br/>{job.location}</p>
+                    <p>Description: <br/>{job.description}</p>
+                    <p>Pay: <br/>{job.payout}</p>
+                    <p>Taker: {job.taker_id === null ? "None" : `${job.taker.name} (${job.taker.phone})`}</p>
                     <button className='btn' onClick={() => handleDelete(job)} style={btnStyle}>Delete</button>
             </div>
         )
@@ -74,6 +75,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                 <p>Location: {job.location}</p>
                 <p>{job.description}</p>
                 <p>Pay: {job.payout}</p>
+                <p>Poster: {job.poster.name} ({job.poster.phone})</p>
                 <button className='btn' onClick={() => handleCancel(job)} style={btnStyle} >Cancel</button>
             </div>
         )

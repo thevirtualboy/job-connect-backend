@@ -40,6 +40,7 @@ function JobList ({jobs, user, setUpdate, login}) {
                 <p>Location: <br/>{job.location}</p>
                 <p>Description: <br />{job.description}</p>
                 <p>Pay: {job.payout}</p>
+                <p>Poster: {job.poster.name}</p>
                 {login ? 
                 <button className='btn' onClick={() => handleAccept(job, user)} style={btnStyle}>Accept</button>
                 :
