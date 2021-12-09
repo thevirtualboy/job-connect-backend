@@ -67,13 +67,15 @@ function Login_SignupPage ({onLogin}) {
             body: JSON.stringify({email, password}),
 
         })
-        .then(response => response.json())
-        .then(data => {
-          onLogin(data)
-          setEmail("")
-          setPassword("")
-          navigate('/myjobs')
-        })
+        .then(response => {if (response.ok) {
+          response.json().then((data) => {
+            onLogin(data)
+            setEmail("")
+            setPassword("")
+            navigate('/myjobs')});
+        } else {
+          alert("Not a valid login.")
+        }});
     }
 
     function handleSignUp (e) {
