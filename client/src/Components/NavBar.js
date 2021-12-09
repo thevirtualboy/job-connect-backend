@@ -52,9 +52,9 @@ function NavBar () {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-        paddingTop: "20px",
         fontFamily: "Genos, sans-serif",
-        fontSize: "25px"
+        fontStyle: "italic",
+        fontSize: "35px"
         
     }
 

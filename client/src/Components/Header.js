@@ -3,24 +3,28 @@ import logo  from '../logo.JPG'
 
 
 const headStyle = {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    borderBottomStyle: "solid",
+    borderWidth: "2px",
+    borderColor: "lightgray"
 }
 const logoStyle = {
-    height: `150px`
+    height: `200px`
 
 }
 
 const btnStyle ={
     float: "right",
-    marginTop: "60px",
+    marginTop: "75px",
+    marginRight: "20px",
     color: "white",
     backgroundColor: "#0A8FF1",
     border: "1.5px solid black",
     borderRadius: "10px",
-    fontSize:"20px",
+    fontSize:"30px",
     padding: "4px",
-    fontFamily: "Genos, sans-serif"
-
+    fontFamily: "Genos, sans-serif",
+    fontStyle: "italic"
 }
 
 function Header ({onLogout, login}) {

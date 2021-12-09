@@ -1,5 +1,42 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import image from '../typing.jpg'
+
+const form1Styles = {
+  display: "flex",
+  flexDirection: "column",
+  height: "200px",
+  maxWidth: "500px",
+  justifyContent: "space-around",
+  textAlign: "left"
+}
+
+const form2Styles = {
+  display: "flex",
+  flexDirection: "column",
+  height: "400px",
+  maxWidth: "500px",
+  justifyContent: "space-around"
+}
+
+const pageStyle = {
+  display: "flex",
+  justifyContent: "space-around",
+  fontFamily: "sans-serif",
+  marginTop: "20px"
+}
+
+const btnStyle = {
+  marginTop: "10px", 
+  width: "75px", 
+  backgroundColor: "#0A8FF1",
+  color: "white",
+  fontSize: "20px",
+  borderRadius: "3px",
+  borderWidth: "1px",
+  borderColor: "black",
+  padding: "2px"
+}
 
 function Login_SignupPage ({onLogin}) {
 
@@ -62,40 +99,43 @@ function Login_SignupPage ({onLogin}) {
       })
     }
     return (
-    
     <>
-      <h1> Login Form </h1>
-      <form onSubmit = {handleSubmit}>  
-        <label>Email <br/>
+    <div style={pageStyle}>
+      <form onSubmit = {handleSubmit} style={form1Styles}>
+      <h1> Login Form </h1>  
+        <label>Email: <br/>
           <input type="text" placeholder= "1234type@gmail.com" onChange = {(e)=>setEmail(e.target.value)}/> 
         </label> <br/>  
-        <label>Password <br/>
+        <label>Password: <br/>
           <input type="text" placeholder= "abcde123!"onChange = {(e)=>setPassword(e.target.value)} /> 
         </label> 
-        <button type="submit">Submit</button>
+        <button className="btn" style={btnStyle} type="submit">Submit</button>
       </form>
-      {/* {login ? <p>{uselog}</p> : <p>not logged</p>} */}
-
-      <h1>Sign Up</h1>
-      <form onSubmit = {handleSignUp}>
-        <label>Name <br/>
+      
+      <form onSubmit = {handleSignUp} style={form2Styles}>
+        <h1>Sign Up</h1>
+        <label>Name: <br/>
           <input type="text" placeholder="John" value={newUser.name} name="name" onChange={handleUserForm} />
         </label> <br/>
-        <label>Email <br/>
+        <label>Email: <br/>
           <input type="text" placeholder="1234type@gmail.com" value={newUser.email} name="email" onChange={handleUserForm}/>
         </label> <br/>
-        <label>Phone <br/>
+        <label>Phone: <br/>
           <input type="text" placeholder="123-456-7890" value={newUser.phone} name="phone" onChange={handleUserForm}/>
         </label> <br/>
-        <label>Location <br/>
+        <label>Location: <br/>
           <input type="text" placeholder="Anytown, USA" value={newUser.location} name="location" onChange={handleUserForm}/>
         </label> <br/>
-        <label>Password <br/>
+        <label>Password: <br/>
           <input type="text" placeholder="abcde123!" value={newUser.password} name="password" onChange={handleUserForm}/>
         </label>
-        <button type="submit">Submit</button>
+        <button className="btn" style={btnStyle} type="submit">Submit</button>
       </form>
       {signed ? <p>You have successfully registered your account, please log in with your username and password.</p> : null}
+    </div>
+    <div style={{textAlign: "center", marginTop: "30px"}}>
+      <img style={{width: "90%"}} src={image} />
+    </div>
     </>
 
 

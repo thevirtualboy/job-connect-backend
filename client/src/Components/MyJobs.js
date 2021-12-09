@@ -1,5 +1,45 @@
 import { useState } from "react"
 
+const form2Styles = {
+    display: "flex",
+    flexDirection: "column",
+    height: "400px",
+    maxWidth: "500px",
+    justifyContent: "space-around"
+  }
+  
+  const pageStyle = {
+    fontFamily: "sans-serif",
+    marginTop: "20px"
+  }
+  
+  const btnStyle = {
+    marginTop: "10px",
+    marginBottom: "10px", 
+    marginRight: "5px",
+    width: "75px", 
+    backgroundColor: "#0A8FF1",
+    color: "white",
+    fontSize: "20px",
+    borderRadius: "3px",
+    borderWidth: "1px",
+    borderColor: "black",
+    padding: "2px"
+  }
+
+  const jobStyle = {
+    fontFamily: "sans-serif", 
+    fontSize: "20px", 
+    textAlign: "left",
+    width: "90%", 
+    margin: "auto", 
+    lineHeight: "30px", 
+    borderBottomStyle: "solid", 
+    borderWidth: "2px", 
+    borderColor: "lightgray" 
+  }
+  
+
 function MyJobs ({login, jobs, user, setUpdate}) {
     const [newJob, setNewJob] = useState({
         title: "",
@@ -16,26 +56,26 @@ function MyJobs ({login, jobs, user, setUpdate}) {
     
     const postedJobs = postFilter.map(job => {
         return (
-            <>
+            <div style={jobStyle}>
                     <h3>{job.title}</h3>
                     <p>Location: {job.location}</p>
                     <p>{job.description}</p>
                     <p>Pay: {job.payout}</p>
-                    <button onClick={() => {handleEditButton(job)}}>Edit</button>
-                    <button onClick={() => handleDelete(job)} >Delete</button>
-            </>
+                    <button onClick={() => {handleEditButton(job)}} style={btnStyle}>Edit</button>
+                    <button onClick={() => handleDelete(job)} style={btnStyle}>Delete</button>
+            </div>
         )
     })
 
     const takenJobs = takeFilter.map(job => {
         return (
-            <>
+            <div style={jobStyle}>
                 <h3>{job.title}</h3>
                 <p>Location: {job.location}</p>
                 <p>{job.description}</p>
                 <p>Pay: {job.payout}</p>
-                <button onClick={() => handleCancel(job)} >Cancel</button>
-            </>
+                <button onClick={() => handleCancel(job)} style={btnStyle} >Cancel</button>
+            </div>
         )
     })
 
@@ -121,29 +161,29 @@ function MyJobs ({login, jobs, user, setUpdate}) {
     }
     
     return (
-        <>
+        <div style={pageStyle}>
             {login ?
                 <> 
+                    <form onSubmit={handleSubmit} style={form2Styles}>
                     <h1>Create a Job:</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label>Job Title <br/>
+                        <label>Job Title: <br/>
                             <input type="text" placeholder="Handyman" name="title" onChange={handleJobForm}/> 
                         </label> <br />
-                        <label>Location <br/>
+                        <label>Location: <br/>
                             <input type="text" placeholder="Anytown, USA" name="location" onChange={handleJobForm}/> 
                         </label> <br />
-                        <label>Description <br/>
-                            <textarea type="text" placeholder="Description for the job..." name="description" onChange={handleJobForm}/> 
+                        <label>Description: <br/>
+                            <textarea type="text" placeholder="Description for the job..." name="description" onChange={handleJobForm} style={{width: "1000px", height: "100px"}}/> 
                         </label> <br />
-                        <label>Pay <br/>
+                        <label>Pay: <br/>
                             <input type="number" placeholder="$$$" name="payout" onChange={handleJobForm}/> 
                         </label>
-                        <button>Submit</button>
+                        <button style={btnStyle}>Submit</button>
                     </form>
                     <h1>Posted Jobs</h1>
                     {editing ?
                     <>
-                        <form onSubmit={() => {handleEdit(editingJob); setEditing(false)}}>
+                        <form onSubmit={() => {handleEdit(editingJob); setEditing(false)}} style={form2Styles}>
                             <label>Job Title <br/>
                                 <input type="text" value={editingJob.title} placeholder="Handyman" name="title" onChange={handleEditForm}/> 
                             </label> <br />
@@ -151,12 +191,12 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                                 <input type="text" value={editingJob.location} placeholder="Anytown, USA" name="location" onChange={handleEditForm}/> 
                             </label> <br />
                             <label>Description <br/>
-                                <textarea type="text" value={editingJob.description} placeholder="Description for the job..." name="description" onChange={handleEditForm}/> 
+                                <textarea type="text" value={editingJob.description} placeholder="Description for the job..." name="description" onChange={handleEditForm} style={{width: "1000px", height: "100px"}}/> 
                             </label> <br />
                             <label>Pay <br/>
                                 <input type="number" value={editingJob.payout} placeholder="$$$" name="payout" onChange={handleEditForm}/> 
                             </label>
-                            <button>Submit</button>
+                            <button style={btnStyle} >Submit</button>
                         </form>
                     </>
                         :
@@ -168,9 +208,9 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                     }
                 </>
                     :
-                <p>Please log in to see and create your jobs!</p>
+                <p style={{textAlign: "center", fontFamily: "Genos, sans-serif", fontSize: "50px", paddingTop: "20px"}}>Please log in to see and create your jobs!</p>
             }
-        </>
+        </div>
     )
 }
 export default MyJobs
