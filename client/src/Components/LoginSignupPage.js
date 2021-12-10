@@ -114,25 +114,31 @@ function LoginSignupPage ({onLogin}) {
         <button className="btn" style={btnStyle} type="submit">Submit</button>
       </form>
       
-      <form onSubmit = {handleSignUp} style={form2Styles}>
-        <h1>Sign Up</h1>
-        <label>Name: <br/>
-          <input type="text" placeholder="John" value={newUser.name} name="name" onChange={handleUserForm} />
-        </label> <br/>
-        <label>Email: <br/>
-          <input type="text" placeholder="1234type@gmail.com" value={newUser.email} name="email" onChange={handleUserForm}/>
-        </label> <br/>
-        <label>Phone: <br/>
-          <input type="text" placeholder="123-456-7890" value={newUser.phone} name="phone" onChange={handleUserForm}/>
-        </label> <br/>
-        <label>Location: <br/>
-          <input type="text" placeholder="Anytown, USA" value={newUser.location} name="location" onChange={handleUserForm}/>
-        </label> <br/>
-        <label>Password: <br/>
-          <input type="text" placeholder="abcde123!" value={newUser.password} name="password" onChange={handleUserForm}/>
-        </label>
-        <button className="btn" style={btnStyle} type="submit">Submit</button>
-      </form>
+      {signed ? 
+        null
+        :
+        <>
+          <form onSubmit = {handleSignUp} style={form2Styles}>
+            <h1>Sign Up</h1>
+            <label>Name: <br/>
+              <input type="text" placeholder="John" value={newUser.name} name="name" onChange={handleUserForm} />
+            </label> <br/>
+            <label>Email: <br/>
+              <input type="text" placeholder="1234type@gmail.com" value={newUser.email} name="email" onChange={handleUserForm}/>
+            </label> <br/>
+            <label>Phone: <br/>
+              <input type="text" placeholder="123-456-7890" value={newUser.phone} name="phone" onChange={handleUserForm}/>
+            </label> <br/>
+            <label>Location: <br/>
+              <input type="text" placeholder="Anytown, USA" value={newUser.location} name="location" onChange={handleUserForm}/>
+            </label> <br/>
+            <label>Password: <br/>
+              <input type="text" placeholder="abcde123!" value={newUser.password} name="password" onChange={handleUserForm}/>
+            </label>
+            <button className="btn" style={btnStyle} type="submit">Submit</button>
+          </form>
+        </>
+      }
       {signed ? <p>You have successfully registered your account, please log in with your username and password.</p> : null}
     </div>
     <div style={{textAlign: "center", marginTop: "30px"}}>
