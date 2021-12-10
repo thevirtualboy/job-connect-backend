@@ -27,6 +27,21 @@ const form2Styles = {
     padding: "2px"
   }
 
+  const createBtnStyle = {
+    marginTop: "10px",
+    marginBottom: "10px", 
+    marginRight: "5px",
+    width: "130px", 
+    backgroundColor: "#0A8FF1",
+    color: "white",
+    fontSize: "20px",
+    borderRadius: "3px",
+    borderWidth: "1px",
+    borderColor: "black",
+    padding: "2px",
+    float: "right"
+  }
+
   const jobStyle = {
     fontFamily: "sans-serif", 
     fontSize: "20px", 
@@ -51,18 +66,20 @@ function MyJobs ({login, jobs, user, setUpdate}) {
     })
     const [editing, setEditing] = useState(false)
     const [editingJob, setEditingJob] = useState({})
+    const [creating, setCreating] = useState(false)
 
     const postFilter = jobs.filter(job => job.poster_id === user.id).sort((a, b) => a.id - b.id);
     const takeFilter = jobs.filter(job => job.taker_id === user.id).sort((a, b) => a.id - b.id);
     
     const postedJobs = postFilter.map(job => {
         return (
-            <div style={jobStyle}>
+            <div key={job.id} style={jobStyle}>
                     <h3>{job.title}</h3>
                     <p>Location: <br/>{job.location}</p>
                     <p>Description: <br/>{job.description}</p>
                     <p>Pay: <br/>{job.payout}</p>
                     <p>Taker: {job.taker_id === null ? "None" : `${job.taker.name} (${job.taker.phone})`}</p>
+                    <button className='btn' onClick={() => handleEditButton(job)} style={btnStyle}>Edit</button>
                     <button className='btn' onClick={() => handleDelete(job)} style={btnStyle}>Delete</button>
             </div>
         )
@@ -70,7 +87,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
 
     const takenJobs = takeFilter.map(job => {
         return (
-            <div style={jobStyle}>
+            <div key={job.id} style={jobStyle}>
                 <h3>{job.title}</h3>
                 <p>Location: {job.location}</p>
                 <p>{job.description}</p>
@@ -104,6 +121,7 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                 poster_id: ""
             })
             setUpdate(true)
+            setCreating(false)
         })
     }
     
@@ -166,25 +184,35 @@ function MyJobs ({login, jobs, user, setUpdate}) {
         <div style={pageStyle}>
             {login ?
                 <> 
-                    <form onSubmit={handleSubmit} style={form2Styles}>
-                    <h1>Create a Job:</h1>
-                        <label>Job Title: <br/>
-                            <input type="text" placeholder="Handyman" name="title" onChange={handleJobForm}/> 
-                        </label> <br />
-                        <label>Location: <br/>
-                            <input type="text" placeholder="Anytown, USA" name="location" onChange={handleJobForm}/> 
-                        </label> <br />
-                        <label>Description: <br/>
-                            <textarea type="text" placeholder="Description for the job..." name="description" onChange={handleJobForm} style={{width: "1000px", height: "100px"}}/> 
-                        </label> <br />
-                        <label>Pay: <br/>
-                            <input type="number" placeholder="$$$" name="payout" onChange={handleJobForm}/> 
-                        </label>
-                        <button className='btn' style={btnStyle}>Submit</button>
-                    </form>
-                    <h1>Posted Jobs</h1>
+                    {editing ? 
+                    null
+                        :
+                    <>
+                        {creating ?
+                        <form onSubmit={handleSubmit} style={form2Styles}>
+                        <h1>Create a Job:</h1>
+                            <label>Job Title: <br/>
+                                <input type="text" placeholder="Handyman" name="title" onChange={handleJobForm}/> 
+                            </label> <br />
+                            <label>Location: <br/>
+                                <input type="text" placeholder="Anytown, USA" name="location" onChange={handleJobForm}/> 
+                            </label> <br />
+                            <label>Description: <br/>
+                                <textarea type="text" placeholder="Description for the job..." name="description" onChange={handleJobForm} style={{width: "1000px", height: "100px"}}/> 
+                            </label> <br />
+                            <label>Pay: <br/>
+                                <input type="number" placeholder="$$$" name="payout" onChange={handleJobForm}/> 
+                            </label>
+                            <button className='btn' style={btnStyle}>Submit</button>
+                        </form>
+                        :
+                        <button className='btn' style={createBtnStyle} onClick={() => setCreating(true)}>Create a Job</button>
+                        }
+                    </>
+                    }
                     {editing ?
                     <>
+                        <h1>Edit Job:</h1>
                         <form onSubmit={() => {handleEdit(editingJob); setEditing(false)}} style={form2Styles}>
                             <label>Job Title <br/>
                                 <input type="text" value={editingJob.title} placeholder="Handyman" name="title" onChange={handleEditForm}/> 
@@ -203,9 +231,16 @@ function MyJobs ({login, jobs, user, setUpdate}) {
                     </>
                         :
                     <>
-                        {postedJobs.length === 0 ? <p>No jobs posted!</p> : postedJobs}
-                        <h1>Taken Jobs</h1>
-                        {takenJobs.length === 0 ? <p>No jobs taken!</p> : takenJobs}
+                        {creating ?
+                            null
+                        :
+                            <>
+                                <h1>Posted Jobs</h1>
+                                {postedJobs.length === 0 ? <p>No jobs posted!</p> : postedJobs}
+                                <h1>Taken Jobs</h1>
+                                {takenJobs.length === 0 ? <p>No jobs taken!</p> : takenJobs}
+                            </>
+                        }
                     </>
                     }
                 </>

@@ -38,7 +38,7 @@ const btnStyle = {
   padding: "2px"
 }
 
-function Login_SignupPage ({onLogin}) {
+function LoginSignupPage ({onLogin}) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -136,7 +136,7 @@ function Login_SignupPage ({onLogin}) {
       {signed ? <p>You have successfully registered your account, please log in with your username and password.</p> : null}
     </div>
     <div style={{textAlign: "center", marginTop: "30px"}}>
-      <img style={{width: "90%"}} src={image} />
+      <img style={{width: "90%"}} src={image} alt="man typing" />
     </div>
     </>
 
@@ -147,4 +147,4 @@ function Login_SignupPage ({onLogin}) {
 
 )
 }
-export default Login_SignupPage
+export default LoginSignupPage

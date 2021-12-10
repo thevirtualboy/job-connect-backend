@@ -1,7 +1,7 @@
 import Header from './Header'
 import '../App.css';
 import {useState, useEffect } from 'react' 
-import Login_SignupPage from './Login_SignupPage';
+import LoginSignupPage from './LoginSignupPage';
 import { Routes, Route } from 'react-router-dom';
 import AboutUs from './AboutUs';
 import NavBar from './NavBar';
@@ -10,18 +10,10 @@ import MyJobs from './MyJobs'
 
 
 function App() {
-
-  const [users, setUsers] = useState([])
   const [login, setLogin] = useState(false)
   const [uselog, setUselog] = useState({})
   const [jobs, setJobs] = useState([])
   const [update, setUpdate] = useState(false)
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/users')
-    .then (response => response.json())
-    .then (data => {setUsers(data)})
-  }, [])
 
   useEffect(()=>{
     fetch('http://localhost:3000/jobs')
@@ -63,7 +55,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AboutUs />} />
         <Route path="/login" element={ 
-          <Login_SignupPage onLogin={onLogin} />     
+          <LoginSignupPage onLogin={onLogin} />     
         }/>
         <Route path="/jobs" element={<JobList jobs={jobs} user={uselog} setUpdate={setUpdate} login={login} />} />
         <Route path="/myjobs" element={<MyJobs login={login} jobs={jobs} user={uselog} setUpdate={setUpdate} />} />

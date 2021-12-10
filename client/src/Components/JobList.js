@@ -35,7 +35,7 @@ function JobList ({jobs, user, setUpdate, login}) {
     
     const jobList = takeFilter.map(job => {
         return (
-            <div style={jobStyle}>
+            <div key={job.id} style={jobStyle}>
                 <h3>{job.title}</h3>
                 <p>Location: <br/>{job.location}</p>
                 <p>Description: <br />{job.description}</p>
@@ -65,7 +65,7 @@ function JobList ({jobs, user, setUpdate, login}) {
 
     return (
         <div style={bodyStyle}>
-            <img style={{paddingTop: "30px", maxWidth: "1000px", width: "90%"}} src={image} />
+            <img style={{paddingTop: "30px", maxWidth: "1000px", width: "90%"}} src={image} alt="job search banner" />
             {login ?
                 null
             :

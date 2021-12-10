@@ -1,4 +1,3 @@
-import { useReducer } from 'react'
 import { Link } from 'react-router-dom'
 import logo  from '../logo.JPG'
 
@@ -36,7 +35,7 @@ function Header ({onLogout, login, user}) {
     }
     return (
         <div style={headStyle}>
-         <img style={logoStyle} src={logo} />
+         <img style={logoStyle} src={logo} alt="logo" />
         {login ?
             <>
             <Link to="/login">
