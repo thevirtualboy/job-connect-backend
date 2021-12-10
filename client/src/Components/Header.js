@@ -1,3 +1,4 @@
+import { useReducer } from 'react'
 import { Link } from 'react-router-dom'
 import logo  from '../logo.JPG'
 
@@ -27,7 +28,7 @@ const btnStyle ={
     fontStyle: "italic"
 }
 
-function Header ({onLogout, login}) {
+function Header ({onLogout, login, user}) {
     function handleLogout() {
         fetch("/logout", {
           method: "DELETE",
@@ -37,9 +38,12 @@ function Header ({onLogout, login}) {
         <div style={headStyle}>
          <img style={logoStyle} src={logo} />
         {login ?
+            <>
             <Link to="/login">
                 <button className='btn' style={btnStyle} onClick={handleLogout}>Logout </button>
             </Link>
+            <p style={{float: "right", marginTop: "90px", marginRight: "20px", fontFamily: "sans-serif"}}>Welcome, {user.name}!</p>
+            </>
             :
             <Link to="/login">
                 <button className='btn' style={btnStyle}> Login/Signup </button>

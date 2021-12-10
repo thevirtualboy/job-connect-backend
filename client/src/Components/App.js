@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div >
-      <Header  onLogout={onLogout} login={login}/><br/>
+      <Header  onLogout={onLogout} login={login} user={uselog}/><br/>
       <NavBar />    
       <Routes>
         <Route path="/" element={<AboutUs />} />
