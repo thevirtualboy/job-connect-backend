@@ -31,7 +31,7 @@ const btnStyle = {
   }
 
 function JobList ({jobs, user, setUpdate, login}) {
-    const takeFilter = jobs.filter(job => job.taker_id !== user.id).sort((a, b) => a.id - b.id);
+    const takeFilter = jobs.filter(job => job.taker_id === null).sort((a, b) => a.id - b.id);
     
     const jobList = takeFilter.map(job => {
         return (
